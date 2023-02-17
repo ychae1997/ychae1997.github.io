@@ -7,7 +7,7 @@ categories:
 tags:
   - [JavaScript, ES6]
 
-permalink: /JavaScript/재귀함수 예제/
+permalink: /JavaScript/this 키워드/
 
 toc: true
 toc_sticky: true
