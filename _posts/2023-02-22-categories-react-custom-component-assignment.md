@@ -7,7 +7,7 @@ categories:
 tags:
   - [React, 코드스테이츠]
 
-permalink: /React/custom-component/
+permalink: /React/fe-sprint-react-custom-component/
 
 toc: true
 toc_sticky: true
