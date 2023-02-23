@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<!-- saved from url=(0164)http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#todo-%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88-%EC%83%81%ED%92%88-%EC%88%98%EB%9F%89-%EC%A6%9D%EA%B0%80 -->
+<html lang="ko" class=" js "><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style> 
+      ::-webkit-scrollbar{ 
+        width: 10px;
+        height: 10px;
+      }
+
+      ::-webkit-scrollbar-track {
+        width: 0px;
+        background-color: rgba(224, 224, 224, 0.2);
+        /* border-radius: 5px; */
+      }
+
+      ::-webkit-scrollbar-thumb {
+        width: 0px;
+        background-color: rgba(220, 219, 218, 0.6);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        width: 10px;
+        height: 20px;
+        /* background-color: rgba(190, 190, 190, 0.2); */
+        background-color: rgba(193, 192, 191, 0.7);
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-track:hover {
+        width: 10px;
+        /* background-color: rgba(150, 150, 150, 0.1); */
+        background-color: rgba(224, 224, 224, 0.5);
+        border-radius: 5px;
+        /* background: transparent; */
+        /* border-radius: 10px; */
+      }
+
+      ::-webkit-scrollbar-button:start:decrement,::-webkit-scrollbar-button:end:increment {
+          width:0px;
+          height: 0px;
+          /* background-color: rgb(14, 221, 24); */
+          /* border-radius: 50%; */
+      }
+    </style>
+    
+    
+
+<!-- begin _includes/seo.html --><title>[React] 상태관리 | ychae1997</title>
+<meta name="description" content="프론트엔드에서의 상태관리란 무엇일까?">
+
+
+  <meta name="author" content="ychae1997">
+  
+  <meta property="article:author" content="ychae1997">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="ychae1997">
+<meta property="og:title" content="[React] 상태관리">
+<meta property="og:url" content="http://localhost:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/">
+
+
+  <meta property="og:description" content="프론트엔드에서의 상태관리란 무엇일까?">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-02-23T00:00:00+09:00">
+
+
+
+  <meta property="article:modified_time" content="2023-02-23T00:00:00+09:00">
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "ychae1997",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="http://127.0.0.1:4000/feed.xml" type="application/atom+xml" rel="alternate" title="ychae1997 Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="./[React] 상태관리 _ ychae1997_files/main.css">
+<link rel="stylesheet" href="./[React] 상태관리 _ ychae1997_files/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="https://github-account.github.io/assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://github-account.github.io/assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://github-account.github.io/assets/images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="https://github-account.github.io/assets/images/favicon/site.webmanifest">
+    <link rel="mask-icon" href="https://github-account.github.io/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#ffc40d">
+    <meta name="theme-color" content="#ffffff">
+  <style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="http://127.0.0.1:4000/">
+          ychae1997
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://ychae1997.github.io/">Home</a>
+            </li><li class="masthead__menu-item">
+              <a href="http://127.0.0.1:4000/about/">About</a>
+            </li><li class="masthead__menu-item">
+              <a href="https://github.com/ychae1997">GitHub</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button" count="0">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope="" itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+        <img src="./[React] 상태관리 _ ychae1997_files/meee.png" alt="ychae1997" itemprop="image">
+      
+    </div>
+  
+
+  <!-- 2022.02.17 author content hidden -->
+  <!-- <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">ychae1997</h3>
+    
+    
+  </div> -->
+
+  <div class="author__urls-wrapper">
+    <!-- <button class="btn btn--inverse">Follow</button> -->
+    <ul class="author__urls social-icons">
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox">
+  <label for="ac-toc">Toggle menu</label>
+  <ul class="nav__items">
+    <!-- <li>
+      <span class="nav__total">🌴 Total Posts: 5</span>
+    </li> -->
+    
+    
+      <li>
+        
+              <a href="http://127.0.0.1:4000/categories/Algorithm/"><span class="nav__sub-title">Algorithm</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+              <a href="http://127.0.0.1:4000/categories/JavaScript/"><span class="nav__sub-title">JavaScript</span></a>
+        
+
+        
+      </li>
+    
+      <li>
+        
+              <a href="http://127.0.0.1:4000/categories/React/"><span class="nav__sub-title">React</span></a>
+        
+
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope="" itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[React] 상태관리">
+    <meta itemprop="description" content="프론트엔드에서의 상태관리란 무엇일까?">
+    <meta itemprop="datePublished" content="2023-02-23T00:00:00+09:00">
+    <meta itemprop="dateModified" content="2023-02-23T00:00:00+09:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[React] 상태관리
+</h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2023-02-23T00:00:00+09:00">February 23, 2023</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C">상태관리란 무엇일까?</a></li><li><a href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#props-drilling">Props Drilling</a></li><li><a href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#-%EA%B3%BC%EC%A0%9C---cmarket-hooks">📚 과제 - Cmarket Hooks</a><ul><li><a href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#todo-%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88-%EC%B6%94%EA%B0%80">TODO: 장바구니 추가</a></li><li class="active"><a href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#todo-%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88-%EC%83%81%ED%92%88-%EC%88%98%EB%9F%89-%EC%A6%9D%EA%B0%80">TODO: 장바구니 상품 수량 증가</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <hr>
+
+<h2 id="상태관리란-무엇일까">상태관리란 무엇일까?<a class="header-link" href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%BC%EA%B9%8C" title="Permalink"><span class="sr-only">Permalink</span><i class="fas fa-link"></i></a></h2>
+<p>State Management, 상태관리란 데이터를 관리하는 방법을 말한다. 그렇다면 프론트엔드에서 상태관리란 무엇일까?</p>
+
+<blockquote>
+
+  <ul>
+    <li>데이터를 설계된 UI, UX에 맞게 설계하고 구현하는 일</li>
+    <li>네트워크를 통해 서버로 전달되는 클라이언트의 요청에 따라 변화하는 상태를 관리하는 일</li>
+  </ul>
+</blockquote>
+
+<p><img src="./[React] 상태관리 _ ychae1997_files/agora.png">
+지난번 과제로 만든 아고라스테이츠를 보며 데이터를 살펴보자.</p>
+
+<ul>
+  <li>작성자</li>
+  <li>작성시간</li>
+  <li>답변유무</li>
+</ul>
+
+<p>다시 본론으로 돌아와 ‘데이터를 설계된 UI, UX에 맞게 설계하고 구현하는 일’은 무슨 뜻일까?
+이는 서버로부터 받아온 데이터를 클라이언트의 화면에 가공해 제공하는 일과 같다. <br></p>
+
+<p>위의 데이터 중 작성시간으로 예를 들어보자. <br></p>
+
+<p>작성시간은 언제 작성했는지를 나타내는 데이터이다. 원래 작성시간은 Date타입으로 <code class="language-plaintext highlighter-rouge">Thu Feb 23 2023 20:32:22 GMT+0900 (한국 표준시)</code> 와 같은 형식으로 나온다. 이런 데이터를 직관적으로 알아보기가 어렵다.</p>
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 작성시간 생성부분</span>
+<span class="kd">const</span> <span class="nx">handleSubmit</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">addData</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="na">createdAt</span><span class="p">:</span> <span class="k">new</span> <span class="nc">Date</span><span class="p">().</span><span class="nf">toISOString</span><span class="p">(),</span> <span class="c1">// 2023-02-23T11:32:04.345Z</span>
+      <span class="c1">// ...생략</span>
+    <span class="p">}</span>
+    <span class="c1">// ...생략</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<p>위와 같은 데이터 형식을 <code class="language-plaintext highlighter-rouge">오후 8:32:04</code> 이런 형태로 바꿔주면 훨씬 더 보기 좋아진다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 작성시간 출력부분</span>
+<span class="k">new</span> <span class="nc">Date</span><span class="p">(</span><span class="nx">createdAt</span><span class="p">).</span><span class="nf">toLocaleTimeString</span><span class="p">()</span> <span class="c1">// 오후 8:32:04</span>
+</code></pre></div></div>
+<p><img src="./[React] 상태관리 _ ychae1997_files/date.png"></p>
+
+<p>또한 글쓰기, 답변 등과 같이 사용자가 UI를 통해 데이터를 변경할 수 있도록 환경을 마련하는 것과,
+사용자의 눈에는 보이지 않는 네트워크 요청 등에 대한 상태관리 역시 프론트엔드 개발자가 고려해야할 부분이다.</p>
+
+<hr>
+
+<h2 id="props-drilling">Props Drilling<a class="header-link" href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#props-drilling" title="Permalink"><span class="sr-only">Permalink</span><i class="fas fa-link"></i></a></h2>
+<p><code class="language-plaintext highlighter-rouge">Props Drilling</code>란 상위 컴포넌트의 state를 props를 통해 전달하고자 하는 컴포넌트로 전달하기 위해 그 사이는 props를 전달하는 용도로만 쓰이는 컴포넌트들을 거치면서 데이터를 전달하는 현상을 뜻한다.</p>
+
+<p><img src="./[React] 상태관리 _ ychae1997_files/propsDrilling.png"></p>
+
+<p>위 그림처럼 컴포넌트 A의 state를 컴포넌트 D로 전달하기 위해선 사이에 있는 컴포넌트 B, C를 거쳐야한다. props의 전달 횟수가 5회 미만으로 적다면 문제가 되진 않겠지만, 규모가 커지고 구조가 복잡해지면 다음과 같은 무제점들이 나타난다</p>
+<blockquote>
+
+  <ul>
+    <li>코드의 가독성이 나빠진다</li>
+    <li>코드의 유지보수가 힘들어진다</li>
+    <li>state변경 시 Props전달 과정에서 불필요하게 관여된 컴포넌트들 또한 리렌더링 된다. -&gt; 웹성능에 악영향!🤯</li>
+  </ul>
+</blockquote>
+
+<hr>
+
+<h2 id="-과제---cmarket-hooks">📚 과제 - Cmarket Hooks<a class="header-link" href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#-%EA%B3%BC%EC%A0%9C---cmarket-hooks" title="Permalink"><span class="sr-only">Permalink</span><i class="fas fa-link"></i></a></h2>
+<p>과제를 통해 <code class="language-plaintext highlighter-rouge">Props Drilling</code>의 문제를 직접 경험해보자!</p>
+
+<p><b><span>initialState.js</span></b></p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="kd">const</span> <span class="nx">initialState</span> <span class="o">=</span>
+<span class="p">{</span>
+  <span class="dl">"</span><span class="s2">items</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">name</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">노른자 분리기</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">img</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">../images/egg.png</span><span class="dl">"</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">price</span><span class="dl">"</span><span class="p">:</span> <span class="mi">9900</span>
+    <span class="p">}</span>
+    <span class="c1">// .. 생략</span>
+  <span class="p">],</span>
+  <span class="dl">"</span><span class="s2">cartItems</span><span class="dl">"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">itemId</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">quantity</span><span class="dl">"</span><span class="p">:</span> <span class="mi">1</span>
+    <span class="p">},</span>
+    <span class="c1">// .. 생략</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><b><span>App.js</span></b></p>
+
+<p><code class="language-plaintext highlighter-rouge">items</code>, <code class="language-plaintext highlighter-rouge">cartItems</code>은 여러 컴포넌트에서 사용해야하기 때문에 각각의 상태를 변경하는 핸들링 함수를 내려줬다.
+(물론 <code class="language-plaintext highlighter-rouge">setCartItems</code> 같은 상태변경함수 자체를 내려줘도 상관없음!)</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">onAddCart={handleAddCart}</code> : 장바구니에 선택한 상품을 추가하는 함수</li>
+  <li><code class="language-plaintext highlighter-rouge">onDelete={handleDelete}</code> : 장바구니 페이지에서 선택한 상품을 함수</li>
+  <li><code class="language-plaintext highlighter-rouge">onQuantityChange={handleQuantityChange}</code> : 장바구니에 담긴 상품의 수량을 변경하는 함수</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">items</span><span class="p">,</span> <span class="nx">setItems</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="nx">initialState</span><span class="p">.</span><span class="nx">items</span><span class="p">);</span>
+  <span class="kd">const</span> <span class="p">[</span><span class="nx">cartItems</span><span class="p">,</span> <span class="nx">setCartItems</span><span class="p">]</span> <span class="o">=</span> <span class="nf">useState</span><span class="p">(</span><span class="nx">initialState</span><span class="p">.</span><span class="nx">cartItems</span><span class="p">);</span>
+
+  <span class="nf">return </span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">Router</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">Nav</span> <span class="nx">cartCount</span><span class="o">=</span><span class="p">{</span><span class="nx">cartItems</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="sr">/</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">Routes</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Route</span>
+          <span class="nx">path</span><span class="o">=</span><span class="dl">"</span><span class="s2">/</span><span class="dl">"</span>
+          <span class="nx">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">ItemListContainer</span>
+            <span class="nx">items</span><span class="o">=</span><span class="p">{</span><span class="nx">items</span><span class="p">}</span>
+            <span class="nx">cartItems</span><span class="o">=</span><span class="p">{</span><span class="nx">cartItems</span><span class="p">}</span>
+            <span class="nx">onAddCart</span><span class="o">=</span><span class="p">{</span><span class="nx">handleAddCart</span><span class="p">}</span> <span class="sr">/&gt;} /</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">Route</span>
+          <span class="nx">path</span><span class="o">=</span><span class="dl">"</span><span class="s2">/shoppingcart</span><span class="dl">"</span>
+          <span class="nx">element</span><span class="o">=</span><span class="p">{</span><span class="o">&lt;</span><span class="nx">ShoppingCart</span>
+            <span class="nx">items</span><span class="o">=</span><span class="p">{</span><span class="nx">items</span><span class="p">}</span>
+            <span class="nx">cartItems</span><span class="o">=</span><span class="p">{</span><span class="nx">cartItems</span><span class="p">}</span>
+            <span class="nx">onDelete</span><span class="o">=</span><span class="p">{</span><span class="nx">handleDelete</span><span class="p">}</span>
+            <span class="nx">onQuantityChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleQuantityChange</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="err">}
+</span>        <span class="o">/&gt;</span>
+      <span class="o">&lt;</span><span class="sr">/Routes</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">img</span>
+        <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">logo_foot</span><span class="dl">"</span>
+        <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="s2">`</span><span class="p">${</span><span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PUBLIC_URL</span><span class="p">}</span><span class="s2">/codestates-logo.png`</span><span class="p">}</span>
+        <span class="nx">alt</span><span class="o">=</span><span class="dl">"</span><span class="s2">logo_foot</span><span class="dl">"</span>
+      <span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/Router</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</code></pre></div></div>
+
+<hr>
+
+<h3 id="todo-장바구니-추가">TODO: 장바구니 추가<a class="header-link" href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#todo-%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88-%EC%B6%94%EA%B0%80" title="Permalink"><span class="sr-only">Permalink</span><i class="fas fa-link"></i></a></h3>
+<blockquote>
+  <p>메인 화면에서 [장바구니 담기] 버튼을 누른 후, 장바구니 페이지로 이동하면 상품이 담겨있어야 합니다.</p>
+</blockquote>
+
+<p><b><span>Item.js</span></b></p>
+
+<p><code class="language-plaintext highlighter-rouge">hanleClick</code> 함수 : <code class="language-plaintext highlighter-rouge">ItemListContaine.js</code>파일에서 받아온 아이템의 아이디 중 선택된 아이디와 클릭이벤트를 리턴한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">Item</span><span class="p">({</span> <span class="nx">item</span><span class="p">,</span> <span class="nx">handleClick</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="nf">return </span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">}</span> <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">item</span><span class="dl">"</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">img</span> <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">item-img</span><span class="dl">"</span> <span class="nx">src</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">img</span><span class="p">}</span> <span class="nx">alt</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&gt;&lt;</span><span class="sr">/img</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">item-name</span><span class="dl">"</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/span</span><span class="err">&gt;
+</span>      <span class="o">&lt;</span><span class="nx">span</span> <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">item-price</span><span class="dl">"</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">item</span><span class="p">.</span><span class="nx">price</span><span class="p">}</span><span class="o">&lt;</span><span class="sr">/span</span><span class="err">&gt;
+</span>       <span class="o">&lt;</span><span class="nx">button</span>
+         <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">item-button</span><span class="dl">"</span>
+         <span class="nx">onClick</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nf">handleClick</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">)}</span><span class="o">&gt;</span><span class="nx">장바구니</span> <span class="nx">담기</span><span class="o">&lt;</span><span class="sr">/button</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><b><span>ItemListContaine.js</span></b></p>
+
+<p><code class="language-plaintext highlighter-rouge">handleClick</code>, <code class="language-plaintext highlighter-rouge">onAddCart(id)</code> 함수 : 자식 컴포넌트인 <code class="language-plaintext highlighter-rouge">Item.js</code>의 <code class="language-plaintext highlighter-rouge">handleClick</code>에서 리턴한 클릭된 상품의 아이디를 <code class="language-plaintext highlighter-rouge">App.js</code>로 올려보내 준다. (Props전달을 위한 과정이며, 사실상 불필요하게 관여된 컴포넌트)</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">function</span> <span class="nf">ItemListContainer</span><span class="p">({</span> <span class="nx">items</span><span class="p">,</span> <span class="nx">onAddCart</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="kd">const</span> <span class="nx">handleClick</span> <span class="o">=</span> <span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nf">onAddCart</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span> <span class="c1">// 🌟 Props전달</span>
+  
+  <span class="nf">return </span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">item-list-container</span><span class="dl">"</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">item-list-body</span><span class="dl">"</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">item-list-title</span><span class="dl">"</span><span class="o">&gt;</span><span class="nx">쓸모없는</span> <span class="nx">선물</span> <span class="nx">모음</span><span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>        <span class="p">{</span><span class="nx">items</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">item</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="o">&lt;</span><span class="nx">Item</span> <span class="nx">item</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span> <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">idx</span><span class="p">}</span> <span class="nx">handleClick</span><span class="o">=</span><span class="p">{</span><span class="nx">handleClick</span><span class="p">}</span> <span class="sr">/&gt;</span><span class="se">)</span><span class="err">}
+</span>      <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">export</span> <span class="k">default</span> <span class="nx">ItemListContainer</span><span class="p">;</span>
+
+</code></pre></div></div>
+<p><b><span>App.js</span></b></p>
+
+<p>올려받은 아이디와 카트아이템의 아이디를 비교해 조건에 따라(카트에 담겨 있는지) 로직을 구현한다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">handleAddCart</span> <span class="o">=</span> <span class="p">(</span><span class="nx">id</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">addItem</span> <span class="o">=</span> <span class="p">{</span> <span class="na">itemId</span> <span class="p">:</span> <span class="nx">id</span><span class="p">,</span> <span class="na">quantity</span> <span class="p">:</span> <span class="mi">1</span> <span class="p">};</span>
+  <span class="kd">const</span> <span class="nx">target</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">cartItems</span><span class="p">].</span><span class="nf">find</span><span class="p">(</span><span class="nx">el</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">itemId</span> <span class="o">===</span> <span class="nx">id</span><span class="p">);</span>
+  <span class="nf">if</span><span class="p">(</span><span class="nx">target</span><span class="p">){</span>
+    <span class="c1">// 수량만 증가</span>
+    <span class="nx">target</span><span class="p">.</span><span class="nx">quantity</span><span class="o">++</span><span class="p">;</span>
+    <span class="nf">setCartItems</span><span class="p">([...</span><span class="nx">cartItems</span><span class="p">]);</span>
+  <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+    <span class="c1">// 장바구니에 담기</span>
+    <span class="nf">setCartItems</span><span class="p">([...</span><span class="nx">cartItems</span><span class="p">,</span> <span class="nx">addItem</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<hr>
+
+<h3 id="todo-장바구니-상품-수량-증가" class="active">TODO: 장바구니 상품 수량 증가<a class="header-link" href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#todo-%EC%9E%A5%EB%B0%94%EA%B5%AC%EB%8B%88-%EC%83%81%ED%92%88-%EC%88%98%EB%9F%89-%EC%A6%9D%EA%B0%80" title="Permalink"><span class="sr-only">Permalink</span><i class="fas fa-link"></i></a></h3>
+
+<p><b><span>CartItem.js</span></b></p>
+
+<p><code class="language-plaintext highlighter-rouge">CartItem</code>중 number 타입 input 부분을 보면, <code class="language-plaintext highlighter-rouge">ShoppingCart.js</code>에서 내려받은 <code class="language-plaintext highlighter-rouge">quantity</code>를 <code class="language-plaintext highlighter-rouge">value</code>값으로 주고 있고, 이 <code class="language-plaintext highlighter-rouge">value</code>값을 핸들링하는 함수인 <code class="language-plaintext highlighter-rouge">handleQuantityChange</code>를 통해 아이디와 함께 리턴하고 있다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">CartItem</span><span class="p">({</span>
+  <span class="nx">item</span><span class="p">,</span>
+  <span class="nx">checkedItems</span><span class="p">,</span>
+  <span class="nx">handleCheckChange</span><span class="p">,</span>
+  <span class="nx">handleQuantityChange</span><span class="p">,</span> <span class="c1">// 🌟</span>
+  <span class="nx">handleDelete</span><span class="p">,</span>
+  <span class="nx">quantity</span> <span class="c1">// 🌟</span>
+<span class="p">})</span> <span class="p">{</span>
+  
+  <span class="nf">return </span><span class="p">(</span>
+    
+    <span class="c1">// 생략...</span>
+
+    <span class="o">&lt;</span><span class="nx">input</span>
+      <span class="nx">type</span><span class="o">=</span><span class="dl">"</span><span class="s2">number</span><span class="dl">"</span>
+      <span class="nx">min</span><span class="o">=</span><span class="p">{</span><span class="mi">1</span><span class="p">}</span>
+      <span class="nx">className</span><span class="o">=</span><span class="dl">"</span><span class="s2">cart-item-quantity</span><span class="dl">"</span>
+      <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">quantity</span><span class="p">}</span> <span class="c1">// 🌟</span>
+      <span class="nx">onChange</span><span class="o">=</span><span class="p">{(</span><span class="nx">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="nf">handleQuantityChange</span><span class="p">(</span><span class="nc">Number</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">value</span><span class="p">),</span> <span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="c1">// 🌟</span>
+      <span class="p">}}</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="sr">/input</span><span class="err">&gt;
+</span>
+    <span class="c1">// 생략...</span>
+  <span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><b><span>ShoppingCart.js</span></b></p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">renderItems</code> : <code class="language-plaintext highlighter-rouge">states.js</code> 파일을 보면 <code class="language-plaintext highlighter-rouge">cartItems</code>과 <code class="language-plaintext highlighter-rouge">Itmes</code> 데이터 형식이 다르다. 우리가 장바구니에서 보고 싶은 화면은 <code class="language-plaintext highlighter-rouge">Item</code>데이터와 같이 상품명과 이미지 등이 보이는 형태이므로 화면에 출력해 줄 상품들을 필터링(아이디가 같은 상품)해서 <code class="language-plaintext highlighter-rouge">Items</code>파일의 데이터 형식으로 매핑하여 보여준다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">quantity</code> : <code class="language-plaintext highlighter-rouge">cartItem</code>과 <code class="language-plaintext highlighter-rouge">renderItems</code>의 아이디를 비교해서 <code class="language-plaintext highlighter-rouge">cartItem</code>의 수량을 변수에 할당한다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">handleQuantityChange</code>, <code class="language-plaintext highlighter-rouge">onQuantityChange</code>: <code class="language-plaintext highlighter-rouge">CartItem.js</code>파일에서 받아온 변경된 수량 즉, <code class="language-plaintext highlighter-rouge">value</code>와 변경된 아이디를 상위 컴포넌트인 <code class="language-plaintext highlighter-rouge">App.js</code>로 올려보낸다.</p>
+  </li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nf">ShoppingCart</span><span class="p">({</span> <span class="nx">items</span><span class="p">,</span> <span class="nx">cartItems</span><span class="p">,</span> <span class="nx">onDelete</span><span class="p">,</span> <span class="nx">onQuantityChange</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="c1">// 생략...</span>
+
+  <span class="kd">const</span> <span class="nx">handleQuantityChange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">quantity</span><span class="p">,</span> <span class="nx">itemId</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nf">onQuantityChange</span><span class="p">(</span><span class="nx">quantity</span><span class="p">,</span> <span class="nx">itemId</span><span class="p">)</span> <span class="c1">// 🌟</span>
+  <span class="p">}</span>
+  
+  <span class="c1">// 생략...</span>
+  <span class="kd">const</span> <span class="nx">renderItems</span> <span class="o">=</span> <span class="nx">items</span><span class="p">.</span><span class="nf">filter</span><span class="p">((</span><span class="nx">item</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">cartItems</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">el</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">itemId</span><span class="p">).</span><span class="nf">indexOf</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1">// 🌟</span>
+  <span class="nf">return </span><span class="p">(</span>
+    <span class="c1">// 생략...</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="dl">"</span><span class="s2">cart-item-list</span><span class="dl">"</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="nx">renderItems</span><span class="p">.</span><span class="nf">map</span><span class="p">((</span><span class="nx">item</span><span class="p">,</span> <span class="nx">idx</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">quantity</span> <span class="o">=</span> <span class="nx">cartItems</span><span class="p">.</span><span class="nf">filter</span><span class="p">(</span><span class="nx">el</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">itemId</span> <span class="o">===</span> <span class="nx">item</span><span class="p">.</span><span class="nx">id</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">quantity</span> <span class="c1">// 🌟</span>
+        <span class="k">return</span> <span class="o">&lt;</span><span class="nx">CartItem</span>
+          <span class="nx">key</span><span class="o">=</span><span class="p">{</span><span class="nx">idx</span><span class="p">}</span>
+          <span class="nx">handleCheckChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleCheckChange</span><span class="p">}</span>
+          <span class="nx">handleQuantityChange</span><span class="o">=</span><span class="p">{</span><span class="nx">handleQuantityChange</span><span class="p">}</span> <span class="c1">// 🌟</span>
+          <span class="nx">handleDelete</span><span class="o">=</span><span class="p">{</span><span class="nx">handleDelete</span><span class="p">}</span>
+          <span class="nx">item</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span>
+          <span class="nx">checkedItems</span><span class="o">=</span><span class="p">{</span><span class="nx">checkedItems</span><span class="p">}</span>
+          <span class="nx">quantity</span><span class="o">=</span><span class="p">{</span><span class="nx">quantity</span><span class="p">}</span> <span class="c1">// 🌟</span>
+        <span class="sr">/</span><span class="err">&gt;
+</span>      <span class="p">})}</span>
+    <span class="o">&lt;</span><span class="sr">/div</span><span class="err">&gt;
+</span>  <span class="p">)</span>
+<span class="p">}</span>
+
+</code></pre></div></div>
+
+<p><b><span>App.js</span></b>
+전달받은 상품아이디를 이용해 변경된 상품을 찾은 후, 그 상품의 수량을 전달받은(업데이트 된) 수량으로 바꿔준다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">handleQuantityChange</span> <span class="o">=</span> <span class="p">(</span><span class="nx">quantity</span><span class="p">,</span> <span class="nx">itemId</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">target</span> <span class="o">=</span> <span class="p">[...</span><span class="nx">cartItems</span><span class="p">].</span><span class="nf">find</span><span class="p">(</span><span class="nx">el</span> <span class="o">=&gt;</span> <span class="nx">el</span><span class="p">.</span><span class="nx">itemId</span> <span class="o">===</span> <span class="nx">itemId</span><span class="p">);</span>
+    <span class="nx">target</span><span class="p">.</span><span class="nx">quantity</span> <span class="o">=</span> <span class="nx">quantity</span><span class="p">;</span>
+    <span class="nf">setCartItems</span><span class="p">([...</span><span class="nx">cartItems</span><span class="p">]);</span>
+  <span class="p">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>레퍼런스 코드 : <code class="language-plaintext highlighter-rouge">map</code>을 이용해 상태를 변경해줬다.</li>
+</ul>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">setCartItems</span><span class="p">(</span><span class="nx">cartItems</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="nx">el</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nf">if</span><span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">itemId</span> <span class="o">===</span> <span class="nx">itemId</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="dl">"</span><span class="s2">itemId</span><span class="dl">"</span><span class="p">:</span> <span class="nx">itemId</span><span class="p">,</span>
+      <span class="dl">"</span><span class="s2">quantity</span><span class="dl">"</span><span class="p">:</span> <span class="nx">quantity</span>
+    <span class="p">}</span>
+  <span class="p">}</span><span class="k">else</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">el</span>
+  <span class="p">}</span>
+<span class="p">}))</span>
+</code></pre></div></div>
+
+<hr>
+
+<h1 id="해결방법">해결방법<a class="header-link" href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#%ED%95%B4%EA%B2%B0%EB%B0%A9%EB%B2%95" title="Permalink"><span class="sr-only">Permalink</span><i class="fas fa-link"></i></a></h1>
+<p>위와같은 문제를 해결하기 위한 방법으로는</p>
+
+<blockquote>
+
+  <ul>
+    <li>state는 될 수 있으면 가까이 유지하기</li>
+    <li><strong>상태관리 라이브러리</strong> 사용하기</li>
+  </ul>
+</blockquote>
+
+<p>등이 있다. 상태관리 라이브러리 같은 경우에는 전역으로 관리하는 저장소에서 직접 state를 꺼내 쓸 수 있기 때문에 <code class="language-plaintext highlighter-rouge">Props Drilling</code>방지에 매우 효과적이다. 
+상태관리 라이브러리에는 Redux, Context api, Mobx, Recoil 등이 있으며, 다음 포스트에서는 Redux사용법에 대해 알아보자!</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="http://127.0.0.1:4000/categories/#react" class="page__taxonomy-item" rel="tag">React</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2023-02-23">February 23, 2023</time></p>
+
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="http://127.0.0.1:4000/React/fe-sprint-react-custom-component/" class="pagination--pager" title="[React] fe-sprint-react-custom-component
+">Prev</a>
+    
+    
+      <a href="http://127.0.0.1:4000/React/%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC/#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">You may also enjoy</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope="" itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="http://127.0.0.1:4000/React/fe-sprint-react-custom-component/" rel="permalink">[React] fe-sprint-react-custom-component
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2023-02-22T00:00:00+09:00">February 22, 2023</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">코드스테이츠 과제 - styled-components 이용해 UI 디자인 패턴 만들기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope="" itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="http://127.0.0.1:4000/React/custom-component/" rel="permalink">[React] Custom Component
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2023-02-21T00:00:00+09:00">February 21, 2023</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">styled-components 이용해 UI 디자인 패턴 만들기
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope="" itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="http://127.0.0.1:4000/JavaScript/this%20%ED%82%A4%EC%9B%8C%EB%93%9C/" rel="permalink">[JavaScript] this 키워드
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2023-02-17T00:00:00+09:00">February 17, 2023</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">this에 대해 알아보자
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope="" itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="http://127.0.0.1:4000/Algorithm/%EC%9E%AC%EA%B7%80%ED%95%A8%EC%88%98%20%EC%98%88%EC%A0%9C/" rel="permalink">[알고리즘] 코플릿 fibonacci 예제
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        <time datetime="2023-02-16T00:00:00+09:00">February 16, 2023</time>
+      </span>
+    
+
+    
+
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">재귀함수로 피보나치 문제 풀기
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    
+      <li><a href="http://127.0.0.1:4000/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2023 ychae1997. Powered by <a href="https://jekyllrb.com/" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="./[React] 상태관리 _ ychae1997_files/main.min.js"></script>
+
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'github-account/repo-name');
+    script.setAttribute('issue-term', 'pathname');
+    script.setAttribute('theme', 'github-light');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  
+
+</body></html>
