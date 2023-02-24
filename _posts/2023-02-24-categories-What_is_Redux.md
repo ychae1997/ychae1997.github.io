@@ -7,7 +7,7 @@ categories:
 tags:
   - [React, 코드스테이츠]
 
-permalink: /React/Redux/
+permalink: /React/Redux란?/
 
 toc: true
 toc_sticky: true
