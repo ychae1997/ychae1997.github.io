@@ -1,5 +1,5 @@
 ---
-title: "[React] Redux란?"
+title: "[React] Redux(리덕스)란?"
 excerpt: "Redux에 대해 알아보자"
 
 categories:
@@ -7,7 +7,7 @@ categories:
 tags:
   - [React, 코드스테이츠]
 
-permalink: /React/Redux란?/
+permalink: /React/Redux란/
 
 toc: true
 toc_sticky: true
