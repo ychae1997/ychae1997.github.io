@@ -308,10 +308,12 @@ figure {
 /* Figure captions */
 
 figcaption {
-  margin-bottom: 0.5em;
-  color: $muted-text-color;
+  margin: 0 auto;
+  // color: $muted-text-color;
+  color: #cbcbcb;
   font-family: $menufont;
-  font-size: $type-size-5;
+  // font-size: $type-size-5;
+  font-size: 0.9em;
 
 
   a {
