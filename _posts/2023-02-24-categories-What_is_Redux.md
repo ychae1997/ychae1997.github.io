@@ -235,6 +235,8 @@ const state = useSelector((state) => state);
 변경은 순수함수로만 가능하다는 뜻이다. <br>
 ➡️ 상태가 엉뚱한 값으로 변경되는 일이 없도록 순수함수로 작성되어야하는 `Reducer`와 연결
 
+<hr>
+
 ## 리팩토링
 여러 역할을 하는 코드들을 한 곳에 작성하는 것은 바람직하지 않다. 대표적인 이유로는 코드의 가독성이 나빠진다는 점이다.
 <div><iframe height="500px" width="100%" src="https://stackblitz.com/edit/react-11p978?file=README.md&view=editor"></div>
