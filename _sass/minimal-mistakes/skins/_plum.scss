@@ -78,3 +78,24 @@ $base0f: #cc6633 !default;
 .ais-search-box .ais-search-box--input {
   background-color: $form-background-color;
 }
+
+// custom
+.sub-title,
+.list-title {
+  display: block;
+  font-size: 1.1em;
+  font-weight: 600
+}
+.sub-title {
+  margin:2em 0 1em;
+}
+.list-title{
+  margin: 1em 0 0.3em;
+}
+.add-para{
+  margin-top: -0.9em;
+  font-size: 0.88em;
+}
+.center{
+  text-align: center;
+}
