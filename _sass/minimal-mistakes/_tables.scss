@@ -1,13 +1,16 @@
 /* ==========================================================================
    TABLES
    ========================================================================== */
-
+.big-table table{
+  font-size: 1em;
+}
 table {
   display: block;
   margin-bottom: 1em;
   width: 100%;
   font-family: $global-font-family;
-  font-size: $type-size-6;
+  // font-size: $type-size-6;
+  font-size: 0.85em;
   border-collapse: collapse;
   overflow-x: auto;
 
