@@ -20,27 +20,27 @@ last_modified_at: 2023-03-06
 ## 📝 IP &#47; IP Packet
 복잡한 인터넷 망 속 수많은 노드(하나의 서버 컴퓨터)들을 지나 어떻게 클라이언트와 서버가 통신할 수 있을까? 데이터를 안전하게 전달하기 위해선 규칙이 필요하다.
 <figure>
-  <img src="/assets/images/posts_img/network/ip.png">
+  <img src="/assets/images/posts_img/Network/ip.png">
   <figcaption>출처: 코드스테이츠</figcaption>
 </figure>
  그래서 흔히 말하는 IP(인터넷 프로토콜) 주소를 컴퓨터에 부여하고 이를 이용해 통신한다.
 IP는 지정한 IP 주소(IP Address)에 패킷(Packet)이라는 통신 단위로 데이터를 전달한다.
 
 <figure>
-  <img src="/assets/images/posts_img/network/packet.png">
+  <img src="/assets/images/posts_img/Network/packet.png">
   <figcaption>출처: 코드스테이츠</figcaption>
 </figure>
 IP 패킷에서 패킷은 pack과 bucket이 합쳐진 단어로 소포에 비유할 수 있다.
 IP 패킷은 우체국 송장처럼 전송 데이터를 무사히 전송하기 위해 출발지 IP, 목적지 IP와 같은 정보가 포함되어 있다.
 
 <figure>
-  <img src="/assets/images/posts_img/network/client.png">
+  <img src="/assets/images/posts_img/Network/client.png">
   <figcaption>출처: 코드스테이츠</figcaption>
 </figure>
 패킷 단위로 전송하면 노드들은 목적지 IP에 도달하기 위해 서로 데이터를 전달한다. 이를 통해 복잡한 인터넷 망 사이에서도 정확한 목적지로 패킷을 전송할 수 있다.
 
 <figure>
-  <img src="/assets/images/posts_img/network/server.png">
+  <img src="/assets/images/posts_img/Network/server.png">
   <figcaption>출처: 코드스테이츠</figcaption>
 </figure>
 서버에서 무사히 데이터를 전송받는다면 서버도 이에 대한 응답을 돌려줘야한다. 서버 역시 IP 패킷을 이용해 클라이엍느에 응답을 전달한다.
@@ -69,14 +69,14 @@ IP 패킷은 우체국 송장처럼 전송 데이터를 무사히 전송하기 �
 
 네트워크 프로토콜 계층은 다음과 같이 나눌 수 있다. 앞서 말했던 IP프로토콜의 한계점은 보다 더 높은 계층의 TCP 프로토콜이 보완할 수 있다.
 <figure>
-  <img src="/assets/images/posts_img/network/osi.png">
+  <img src="/assets/images/posts_img/Network/osi.png">
   <figcaption>TCP/IP 모델이 OSI 모델보다 먼저 개발되었으며 각 모델의 계층이 정확하게 일치하지는 않는다</figcaption>
   <figcaption>출처: 코드스테이츠</figcaption>
 </figure>
 
 ex) 채팅 프로그램에서 메시지를 보낼 때
 <figure>
-  <img src="/assets/images/posts_img/network/ex.png">
+  <img src="/assets/images/posts_img/Network/ex.png">
   <figcaption>출처: 코드스테이츠</figcaption>
 </figure>
 1. HTTP 메시지가 생성되면 Socket을 통해 전달된다. <br>
@@ -88,7 +88,7 @@ _*Socket(소켓) 프로그램이 네트워크에서 데이터를 송수신할 �
 
 ### ✔️ TCP &#47; IP 패킷
 <figure>
-  <img src="/assets/images/posts_img/network/tcp.png">
+  <img src="/assets/images/posts_img/Network/tcp.png">
   <figcaption>출처: 코드스테이츠</figcaption>
 </figure>
 TCP 세그먼트에는
@@ -107,7 +107,7 @@ TCP 세그먼트에는
 TCP는 장치들 사이에 논리적인 접속을 성립하기 위해 3 way handshake를 사용하는 연결지향형 프로토콜이다.
 
 <figure>
-  <img src="/assets/images/posts_img/network/3way.png">
+  <img src="/assets/images/posts_img/Network/3way.png">
   <figcaption>출처: 코드스테이츠</figcaption>
 </figure>
 
@@ -125,13 +125,13 @@ TCP는 장치들 사이에 논리적인 접속을 성립하기 위해 3 way hand
 
 <h4 class="sub-title">2. 데이터 전달 보증 - 비연결성 보완</h4>
 <figure>
-  <img src="/assets/images/posts_img/network/ch1.png">
+  <img src="/assets/images/posts_img/Network/ch1.png">
   <figcaption>출처: 코드스테이츠</figcaption>
 </figure>
 TCP는 데이터 전송이 성공적으로 이루어진다면 이에 대한 응답을 돌려준다. ➡️ IP 패킷의 한계인 비연결성 보완
 
 <figure>
-  <img src="/assets/images/posts_img/network/ch2.png">
+  <img src="/assets/images/posts_img/Network/ch2.png">
   <figcaption>출처: 코드스테이츠</figcaption>
 </figure>
 <h4 class="sub-title">2. 순서 보장 - 비신뢰성 보완</h4>
