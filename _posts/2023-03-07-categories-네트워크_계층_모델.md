@@ -1,13 +1,13 @@
 ---
-title: "[네트워크] 네트워크 계층 모델"
-excerpt: "OSI 7계층, TCP/IP 4계층 모델에 대해 알아보자"
+title: "[네트워크] 네트워크 계층모델"
+excerpt: "OSI 7계층 모델 TCP/IP 4계층 모델에 대해 알아보자"
 
 categories:
   - Network
 tags:
   - [네트워크계층모델]
 
-permalink: /Network/네트워크 계층 모델
+permalink: /Network/NetworkLayer
 
 toc: true
 toc_sticky: true
