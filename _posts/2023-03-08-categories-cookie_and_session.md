@@ -12,8 +12,8 @@ permalink: /Network/Cookie_and_Session
 toc: true
 toc_sticky: true
 
-date: 2023-03-09
-last_modified_at: 2023-03-09
+date: 2023-03-08
+last_modified_at: 2023-03-08
 ---
 <hr>
 
