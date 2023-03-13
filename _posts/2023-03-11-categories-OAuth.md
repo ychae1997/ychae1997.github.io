@@ -7,7 +7,7 @@ categories:
 tags:
   - [Hashing, Token, JWT]
 
-permalink: /Network/Token
+permalink: /Network/OAuth
 
 toc: true
 toc_sticky: true
