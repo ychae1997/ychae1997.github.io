@@ -20,8 +20,8 @@ main:
 categories:
   - title: "Web"
     url: /categories/Web/
-  - title: "자료구조"
-    url: /categories/자료구조/
+  - title: "Data Structure"
+    url: /categories/Data Structure/
   - title: "Algorithm"
     url: /categories/Algorithm/
   - title: "JavaScript"
